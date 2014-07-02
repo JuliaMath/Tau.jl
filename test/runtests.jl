@@ -1,5 +1,8 @@
 using Tau
 using Base.Test
 
-# write your own tests here
-@test 1 == 1
+@test tau == 2*pi
+@test float32(tau) == 2*float32(pi)
+@test float64(float32(tau)) == float64(2*float32(pi))
+@test isa(tau, MathConst)
+
