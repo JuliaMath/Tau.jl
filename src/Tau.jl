@@ -17,6 +17,7 @@ macro math_const(sym, val, def)
     end
 end
 
+# Use overridden macro definition to define conversion methods for tau
 @math_const τ        6.28318530717958647692  tau
 const tau = τ
 end
