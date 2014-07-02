@@ -3,7 +3,7 @@
 Defines the Tau constant. Pretty self-explanatory.
 
 ```
-tau = 2*pi
+tau == 2*pi
 ```
 
 # Usage
@@ -12,6 +12,6 @@ tau = 2*pi
 using Tau
 
 tau == τ == 2*pi  # => true
-typeof(tau)       # => MathConst
+typeof(tau)       # => MathConst{:τ} (constructor with 1 method)
 ```
 
