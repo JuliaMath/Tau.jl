@@ -1,3 +1,17 @@
 # Tau
 
-[![Build Status](https://travis-ci.org/Aerlinger/Tau.jl.svg?branch=master)](https://travis-ci.org/Aerlinger/Tau.jl)
+Defines the Tau constant. Pretty self-explanatory.
+
+```
+tau = 2*pi
+```
+
+# Usage
+
+```julia
+using Tau
+
+tau == τ == 2*pi  # => true
+typeof(tau)       # => MathConst
+```
+
