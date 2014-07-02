@@ -1,5 +1,22 @@
 module Tau
+export tau, τ
 
-# package code goes here
+# Derived from Base.@math_const as defined in base/constants.jl
+macro math_const(sym, val, def)
+    esym = esc(sym)
+    qsym = esc(Expr(:quote, sym))
+    bigconvert = quote
+        Base.convert(::Type{BigFloat}, ::MathConst{$qsym}) = $(esc(def))
+    end
 
-end # module
+    quote
+        const $esym = MathConst{$qsym}()
+        $bigconvert
+        Base.convert(::Type{Float64}, ::MathConst{$qsym}) = $val
+        Base.convert(::Type{Float32}, ::MathConst{$qsym}) = $(float32(val))
+    end
+end
+
+@math_const τ        6.28318530717958647692  tau
+const tau = τ
+end
