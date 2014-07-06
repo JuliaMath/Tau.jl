@@ -8,7 +8,7 @@ macro math_const(sym, val, def)
 
     bigconvert = quote
       # Long version of Tau isn't defined in MPFR library so it's defined manually here:
-        Base.convert(::Type{BigFloat}, ::MathConst{:τ}) = BigFloat(6.283185307179586476925286766559005768394338798750211641949889184615632812572417997256069650684234135964296173026564613294187689219101164463450718816256)
+        Base.convert(::Type{BigFloat}, ::MathConst{:τ}) = BigFloat("6.283185307179586476925286766559005768394338798750211641949889184615632812572417997256069650684234135964296173026564613294187689219101164463450718816256")
         big(x::MathConst{:τ}) = Base.convert(BigFloat, τ)
     end
 
