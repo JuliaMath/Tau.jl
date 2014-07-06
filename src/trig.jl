@@ -1,7 +1,4 @@
-# This is a (shameful) ripoff of the sinpi/cospi functions from Base.
-# One would hope that using τ might make these functions simpler, 
-# but the best that can be said here is that they are (perhaps)
-# easier to understand.
+# This is a ripoff of the sinpi/cospi functions from Base.
 
 function sintau(x::Real)
     if isinf(x)
