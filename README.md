@@ -1,6 +1,7 @@
 # Tau
 
-Defines the Tau constant. Pretty self-explanatory.
+Defines the [Tau](http://www.tauday.com/tau-manifesto) constant
+and related functions.
 
 ```
 tau == 2*pi
