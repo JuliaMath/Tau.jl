@@ -5,7 +5,7 @@ using Base.Test
 @test float32(tau) == 2*float32(pi)
 @test float64(float32(tau)) == float64(2*float32(pi))
 @test big(tau) == 2(big(pi))
-@test isa(tau, MathConst)
+@test isa(tau, Irrational)
 
 # degree-based trig functions
 for T = (Float32,Float64)
@@ -36,4 +36,3 @@ end
 @test_approx_eq modtau(355.0)       3.1416227979431572
 @test_approx_eq modtau(355.0f0)     3.1416228f0
 @test modtau(int64(2)^60) == modtau(2.0 ^ 60)
-

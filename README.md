@@ -13,7 +13,7 @@ tau == 2*pi
 using Tau
 
 tau == τ == 2*pi  # => true
-typeof(tau)       # => MathConst{:τ} (constructor with 1 method)
+typeof(tau)       # => Irrational{:τ} (constructor with 1 method)
 ```
 
 The tau variants of `sinpi`, `cospi`, and `mod2pi` are also defined:
