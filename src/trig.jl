@@ -1,4 +1,4 @@
-# This is a ripoff of the sinpi/cospi functions from Base.
+# Adapted from julia/special/trig.jl
 
 function sintau(x::Real)
     if isinf(x)
