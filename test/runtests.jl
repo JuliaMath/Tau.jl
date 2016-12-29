@@ -32,10 +32,10 @@ end
 
 @test_throws ErrorException modtau(int64(2)^60-1)
 
-@test_approx_eq modtau(10)          mod(10, tau)
-@test_approx_eq modtau(-10)         mod(-10, tau)
-@test_approx_eq modtau(355)         3.1416227979431572
-@test_approx_eq modtau(int32(355))  3.1416227979431572
-@test_approx_eq modtau(355.0)       3.1416227979431572
-@test_approx_eq modtau(355.0f0)     3.1416228f0
-@test modtau(int64(2)^60) == modtau(2.0 ^ 60)
+@test modtau(10) ≈ mod(10, tau)
+@test modtau(-10) ≈ mod(-10, tau)
+@test modtau(355) ≈ 3.1416227979431572
+@test modtau(int32(355)) ≈ 3.1416227979431572
+@test modtau(355.0) ≈ 3.1416227979431572
+@test modtau(355.0f0) ≈ 3.1416228f0
+@test modtau(int64(2)^60) == modtau(2.0^60)
