@@ -1,10 +1,8 @@
 # Adapted from julia/special/trig.jl
 
-function sintau(x::Real)
-    if isinf(x)
-        return throw(DomainError())
-    elseif isnan(x)
-        return nan(x)
+function sintau{T<:Real}(x::T)
+    if !isfinite(x)
+        throw(DomainError())
     end
 
     rx = copysign(float(rem(x,1)),x)
@@ -27,11 +25,9 @@ function sintau(x::Real)
     end
 end
 
-function costau(x::Real)
-    if isinf(x)
-        return throw(DomainError())
-    elseif isnan(x)
-        return nan(x)
+function costau{T<:Real}(x::T)
+    if !isfinite(x)
+        throw(DomainError())
     end
 
     rx = abs(float(rem(x,1)))
@@ -56,7 +52,7 @@ end
 sintau(x::Integer) = zero(x)
 costau(x::Integer) = one(x)
 
-function sintau(z::Complex)
+function sintau{T}(z::Complex{T})
     zr, zi = reim(z)
     if !isfinite(zi) && zr == 0 return complex(zr, zi) end
     if isnan(zr) && !isfinite(zi) return complex(zr, zi) end
@@ -67,7 +63,7 @@ function sintau(z::Complex)
     complex(sintau(zr)*cosh(tauzi), costau(zr)*sinh(tauzi))
 end
 
-function costau(z::Complex)
+function costau{T}(z::Complex{T})
     zr, zi = reim(z)
     if !isfinite(zi) && zr == 0
         return complex(isnan(zi) ? zi : oftype(zi, Inf),

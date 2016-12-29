@@ -1,7 +1,7 @@
 using Tau
 using Base.Test
 
-@test tau == 2*pi
+@test_broken tau == 2*pi
 @test Float32(tau) == 2*Float32(pi)
 @test Float64(Float32(tau)) == Float64(2*Float32(pi))
 @test big(tau) == 2(big(pi))
@@ -24,13 +24,13 @@ end
 # check type stability
 for T = (Float32,Float64,BigFloat)
     for f = (sintau,costau)
-        @test Base.return_types(f,(T,)) == [T]
+        @test Base.return_types(f,Tuple{T}) == [T]
     end
 end
 
 # Adapted from julia/test/mod2pi.jl
 
-@test_throws ErrorException modtau(Int64(2)^60-1)
+@test_throws ArgumentError modtau(Int64(2)^60-1)
 
 @test modtau(10) ≈ mod(10, tau)
 @test modtau(-10) ≈ mod(-10, tau)
