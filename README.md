@@ -1,4 +1,7 @@
 # Tau
+[![tests-0.4](http://pkg.julialang.org/badges/Tau_0.4.svg)](http://pkg.julialang.org/?pkg=Tau)
+[![tests-0.5](http://pkg.julialang.org/badges/Tau_0.5.svg)](http://pkg.julialang.org/?pkg=Tau)
+[![tests-0.6](http://pkg.julialang.org/badges/Tau_0.6.svg)](http://pkg.julialang.org/?pkg=Tau)
 
 This [Julia package](http://pkg.julialang.org/)
 defines the [Tau](http://www.tauday.com/tau-manifesto) constant
