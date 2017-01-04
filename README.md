@@ -1,6 +1,6 @@
 # Tau
 
-This [Julia package](http://pkg.julialang.org/)
+This [Julia](https://github.com/JuliaLang/julia) [package](http://pkg.julialang.org/)
 defines the [Tau](http://www.tauday.com/tau-manifesto) constant
 and related functions.
 
