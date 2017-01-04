@@ -1,6 +1,7 @@
 # Tau
 
-Defines the [Tau](http://www.tauday.com/tau-manifesto) constant
+This [Julia package](http://pkg.julialang.org/)
+defines the [Tau](http://www.tauday.com/tau-manifesto) constant
 and related functions.
 
 ```
@@ -22,4 +23,3 @@ The tau variants of `sinpi`, `cospi`, and `mod2pi` are also defined:
 sintau(1//4) # => 1.0
 costau(1//2) # => -1.0
 ```
-
