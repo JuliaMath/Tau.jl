@@ -1,9 +1,9 @@
 using Tau
 using Base.Test
 
-@test tau == 2*pi
-@test float32(tau) == 2*float32(pi)
-@test float64(float32(tau)) == float64(2*float32(pi))
+@test_broken tau == 2*pi
+@test Float32(tau) == 2*Float32(pi)
+@test Float64(Float32(tau)) == Float64(2*Float32(pi))
 @test big(tau) == 2(big(pi))
 @test isa(tau, Irrational)
 
@@ -19,20 +19,23 @@ for T = (Float32,Float64)
     end
 end
 
+# Adapted from julia/test/math.jl
+
 # check type stability
 for T = (Float32,Float64,BigFloat)
     for f = (sintau,costau)
-        @test Base.return_types(f,(T,)) == [T]
+        @test Base.return_types(f,Tuple{T}) == [T]
     end
 end
 
-# Taken from /julia/test/mod2pi.jl
-@test_throws ErrorException modtau(int64(2)^60-1)
+# Adapted from julia/test/mod2pi.jl
 
-@test_approx_eq modtau(10)          mod(10, tau)
-@test_approx_eq modtau(-10)         mod(-10, tau)
-@test_approx_eq modtau(355)         3.1416227979431572
-@test_approx_eq modtau(int32(355))  3.1416227979431572
-@test_approx_eq modtau(355.0)       3.1416227979431572
-@test_approx_eq modtau(355.0f0)     3.1416228f0
-@test modtau(int64(2)^60) == modtau(2.0 ^ 60)
+@test_throws ArgumentError modtau(Int64(2)^60-1)
+
+@test modtau(10) ≈ mod(10, tau)
+@test modtau(-10) ≈ mod(-10, tau)
+@test modtau(355) ≈ 3.1416227979431572
+@test modtau(Int32(355)) ≈ 3.1416227979431572
+@test modtau(355.0) ≈ 3.1416227979431572
+@test modtau(355.0f0) ≈ 3.1416228f0
+@test modtau(Int64(2)^60) == modtau(2.0^60)
