@@ -9,7 +9,6 @@ branches:
   only:
     - master
     - /release-.*/
-    - requires
 
 notifications:
   - provider: Email
