@@ -1,16 +1,19 @@
 # Tau
 
-[![tests-0.4](http://pkg.julialang.org/badges/Tau_0.4.svg)](http://pkg.julialang.org/?pkg=Tau)
-[![tests-0.5](http://pkg.julialang.org/badges/Tau_0.5.svg)](http://pkg.julialang.org/?pkg=Tau)
-[![tests-0.6](http://pkg.julialang.org/badges/Tau_0.6.svg)](http://pkg.julialang.org/?pkg=Tau)
+[![tests-0.4][tests-0.4-img]](http://pkg.julialang.org/?pkg=Tau)
+[![tests-0.5][tests-0.5-img]](http://pkg.julialang.org/?pkg=Tau)
+[![tests-0.6][tests-0.6-img]](http://pkg.julialang.org/?pkg=Tau)  
+[![travis][travis-img]](https://travis-ci.org/JuliaMath/Tau.jl)
+[![appveyor][appveyor-img]](https://ci.appveyor.com/project/waldyrious/tau-jl)
+[![codecov][codecov-img]](http://codecov.io/github/JuliaMath/Tau.jl)
 
-Linux, OSX: [![Build Status](https://travis-ci.org/Aerlinger/Tau.jl.svg?branch=master)](https://travis-ci.org/Aerlinger/Tau.jl)
+[tests-0.4-img]: http://pkg.julialang.org/badges/Tau_0.4.svg
+[tests-0.5-img]: http://pkg.julialang.org/badges/Tau_0.5.svg
+[tests-0.6-img]: http://pkg.julialang.org/badges/Tau_0.6.svg
+[travis-img]: https://img.shields.io/travis/JuliaMath/Tau.jl/master.svg?label=Linux,%20macOS
+[appveyor-img]: https://img.shields.io/appveyor/ci/waldyrious/tau-jl/master.svg?label=Windows
+[codecov-img]: https://img.shields.io/codecov/c/github/JuliaMath/Tau.jl/master.svg?label=coverage
 
-Windows: [![Build status](https://ci.appveyor.com/api/projects/status/dpoqmol3k4hivtmr/branch/master?svg=true)](https://ci.appveyor.com/project/waldyrious/tau-jl/branch/master)
-
-Code coverage:
-[![Coverage Status](https://coveralls.io/repos/Aerlinger/Tau.jl/badge.svg?branch=master&service=github)](https://coveralls.io/github/Aerlinger/Tau.jl?branch=master)
-[![codecov.io](http://codecov.io/github/Aerlinger/Tau.jl/coverage.svg?branch=master)](http://codecov.io/github/Aerlinger/Tau.jl?branch=master)
 
 This [Julia](https://github.com/JuliaLang/julia) [package](http://pkg.julialang.org/)
 defines the [Tau](http://www.tauday.com/tau-manifesto) constant
