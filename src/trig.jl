@@ -1,6 +1,6 @@
 # Adapted from julia/special/trig.jl
 
-function sintau{T<:Real}(x::T)
+function sintau(x::Real)
     if !isfinite(x)
         throw(DomainError())
     end
@@ -25,7 +25,7 @@ function sintau{T<:Real}(x::T)
     end
 end
 
-function costau{T<:Real}(x::T)
+function costau(x::Real)
     if !isfinite(x)
         throw(DomainError())
     end
@@ -52,7 +52,7 @@ end
 sintau(x::Integer) = zero(x)
 costau(x::Integer) = one(x)
 
-function sintau{T}(z::Complex{T})
+function sintau(z::Complex)
     zr, zi = reim(z)
     if !isfinite(zi) && zr == 0 return complex(zr, zi) end
     if isnan(zr) && !isfinite(zi) return complex(zr, zi) end
@@ -63,7 +63,7 @@ function sintau{T}(z::Complex{T})
     complex(sintau(zr)*cosh(tauzi), costau(zr)*sinh(tauzi))
 end
 
-function costau{T}(z::Complex{T})
+function costau(z::Complex)
     zr, zi = reim(z)
     if !isfinite(zi) && zr == 0
         return complex(isnan(zi) ? zi : oftype(zi, Inf),
