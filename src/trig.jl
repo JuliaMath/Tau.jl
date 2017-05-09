@@ -2,6 +2,7 @@
 
 function sintau(x::Real)
     if !isfinite(x)
+        isnan(x) && return x
         throw(DomainError())
     end
 
@@ -27,6 +28,7 @@ end
 
 function costau(x::Real)
     if !isfinite(x)
+        isnan(x) && return x
         throw(DomainError())
     end
 
@@ -52,32 +54,42 @@ end
 sintau(x::Integer) = zero(x)
 costau(x::Integer) = one(x)
 
-function sintau(z::Complex)
+# Implementations of complex sintau/costau are adapted from julia/base/special/trig.jl.
+function sintau{T}(z::Complex{T})
+    F = float(T)
     zr, zi = reim(z)
-    if !isfinite(zi) && zr == 0 return complex(zr, zi) end
-    if isnan(zr) && !isfinite(zi) return complex(zr, zi) end
-    if !isfinite(zr) && zi == 0 return complex(oftype(zr, NaN), zi) end
-    if !isfinite(zr) && isfinite(zi) return complex(oftype(zr, NaN), oftype(zi, NaN)) end
-    if !isfinite(zr) && !isfinite(zi) return complex(zr, oftype(zi, NaN)) end
-    tauzi = tau*zi
-    complex(sintau(zr)*cosh(tauzi), costau(zr)*sinh(tauzi))
+    if isinteger(zr)
+        Complex(zero(F), sinh(tau * zi))
+    elseif !isfinite(zr)
+        if zi == 0 || isinf(zi)
+            Complex(F(NaN), F(zi))
+        else
+            Complex(F(NaN), F(NaN))
+        end
+    else
+        tauzi = tau * zi
+        Complex(sintau(zr) * cosh(tauzi), costau(zr) * sinh(tauzi))
+    end
 end
 
-function costau(z::Complex)
+function costau{T}(z::Complex{T})
+    F = float(T)
     zr, zi = reim(z)
-    if !isfinite(zi) && zr == 0
-        return complex(isnan(zi) ? zi : oftype(zi, Inf),
-                       isnan(zi) ? zr : zr*-sign(zi))
+    if isinteger(zr)
+        s = copysign(zero(F), zr)
+        Complex(cosh(tau * zi), isnan(zi) ? s : -flipsign(s,zi))
+    elseif !isfinite(zr)
+        if zi == 0
+            Complex(F(NaN), isnan(zr) ? zero(F) : -flipsign(F(zi), zr))
+        elseif isinf(zi)
+            Complex(F(Inf), F(NaN))
+        else
+            Complex(F(NaN), F(NaN))
+        end
+    else
+        tauzi = tau * zi
+        Complex(costau(zr) * cosh(tauzi), -sintau(zr) * sinh(tauzi))
     end
-    if !isfinite(zr) && isinf(zi)
-        return complex(oftype(zr, Inf), oftype(zi, NaN))
-    end
-    if isinf(zr)
-        return complex(oftype(zr, NaN), zi==0 ? -copysign(zi, zr) : oftype(zi, NaN))
-    end
-    if isnan(zr) && zi==0 return complex(zr, abs(zi)) end
-    tauzi = tau*zi
-    complex(costau(zr)*cosh(tauzi), -sintau(zr)*sinh(tauzi))
 end
 
 Base.@vectorize_1arg Number sintau
