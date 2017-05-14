@@ -2,46 +2,56 @@ using Tau
 using Base.Test
 
 # Basic tests
-@test_broken tau == 2*pi
+@test tau ≠ 2 * pi # tau is Irrational, can't be equal to an AbstractFloat
 @test Float32(tau) == 2*Float32(pi)
 @test Float64(Float32(tau)) == Float64(2*Float32(pi))
 @test big(tau) == 2(big(pi))
 @test isa(tau, Irrational)
 
 # Test approximate results of degree-based trig functions
-for T = (Float32,Float64)
-    for x = -2:0.1:2
-        @test_approx_eq_eps sintau(convert(T,x))::T convert(T,sin(tau*x)) eps(tau*convert(T,x))
-        @test_approx_eq_eps costau(convert(T,x))::T convert(T,cos(tau*x)) eps(tau*convert(T,x))
-    end
+for T = (Float32, Float64), x = -3:0.01:3.0
+    @test @inferred(sintau(T(x))) ≈ T(sinpi(2 * parse(BigFloat, string(x))))
+    @test @inferred(costau(T(x))) ≈ T(cospi(2 * parse(BigFloat, string(x))))
 end
 
 # Test exact results of passing integer values to sintau/costau
-for T = (Int, Complex)
-    for x = -3:3
-        @test sintau(convert(T,x)) == zero(T)
-        @test costau(convert(T,x)) == one(T)
-    end
+for T = (Int, Complex), x = -3:3
+    @test @inferred(sintau(T(x))) == zero(T)
+    @test @inferred(costau(T(x))) == one(T)
+end
+# Test complex sintau/costau with floating input
+for x in -3.0:0.1:3.0, y in -3.0:0.1:3.0
+    z = complex(x, y)
+    @test @inferred(sintau(z)) ≈ sinpi(2 * z)
+    @test @inferred(costau(z)) ≈ cospi(2 * z)
 end
 
+# Test corner cases for real sintau/costau
+for x in (Inf, -Inf)
+    @test_throws DomainError sintau(x)
+    @test_throws DomainError costau(x)
+end
+@test isequal(@inferred(sintau(NaN)), sinpi(NaN))
+@test isequal(@inferred(costau(NaN)), cospi(NaN))
+
 # Test exact results of passing integer values to sintau/costau as float types
-for T = (Float32, Float64, BigFloat, Complex)
-    for x = -3.0:3.0
-        @test sintau(convert(T,x)) == sign(x)*zero(T)
-        @test costau(convert(T,x)) == one(T)
-    end
+for T = (Float32, Float64, BigFloat, Complex), x = -3.0:3.0
+    @test @inferred(sintau(T(x))) == sign(x)*zero(T)
+    @test @inferred(costau(T(x))) == one(T)
+end
+
+# Test corner cases of complex sintau/costau
+for x in (Inf, NaN, 0), y in (Inf, NaN, 0)
+    z = complex(x, y)
+    @test isequal(@inferred(sintau(z)), sinpi(2 * z))
+    @test isequal(@inferred(costau(z)), cospi(2 * z))
 end
 
 # Check type stability of sintau/costau (adapted from julia/test/math.jl)
-for T = (Int,Float32,Float64,BigFloat)
-    for f = (sintau,costau)
-        @test Base.return_types(f,Tuple{T}) == [T]
-    end
+for T = (Int,Float32,Float64,BigFloat), f = (sintau,costau)
+    @test Base.return_types(f,Tuple{T}) == [T]
+    @test Base.return_types(f,Tuple{Complex{T}}) == [Complex{float(T)}]
 end
-
-# Test passing Inf to sintau / costau
-@test_throws DomainError sintau(Inf)
-@test_throws DomainError costau(Inf)
 
 # Test modtau (adapted from julia/test/mod2pi.jl)
 @test_throws ArgumentError modtau(Int64(2)^60-1)
