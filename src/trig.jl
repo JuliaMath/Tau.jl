@@ -92,8 +92,5 @@ function costau{T}(z::Complex{T})
     end
 end
 
-Base.@vectorize_1arg Number sintau
-Base.@vectorize_1arg Number costau
-
 const sinτ = sintau
 const cosτ = costau
