@@ -1,8 +1,8 @@
 # Tau
 
-[![tests-0.4][tests-0.4-img]](http://pkg.julialang.org/?pkg=Tau)
-[![tests-0.5][tests-0.5-img]](http://pkg.julialang.org/?pkg=Tau)
-[![tests-0.6][tests-0.6-img]](http://pkg.julialang.org/?pkg=Tau)  
+[![tests-0.4][tests-0.4-img]](http://pkg.julialang.org/detail/Tau)
+[![tests-0.5][tests-0.5-img]](http://pkg.julialang.org/detail/Tau)
+[![tests-0.6][tests-0.6-img]](http://pkg.julialang.org/detail/Tau)  
 [![travis][travis-img]](https://travis-ci.org/JuliaMath/Tau.jl)
 [![appveyor][appveyor-img]](https://ci.appveyor.com/project/waldyrious/tau-jl)
 [![codecov][codecov-img]](http://codecov.io/github/JuliaMath/Tau.jl)
