@@ -20,6 +20,9 @@ which defined an explicit override for the `==` operator when involving `MathCon
 with the following reasoning:
 > MathConsts are irrational, so unequal to everything else
 
+Later changed, in [JuliaLang/julia#11929](https://github.com/JuliaLang/julia/pull/11929), to:
+> Irrationals, by definition, can't have a finite representation equal them exactly
+
 This was further explained in [a comment in JuliaLang/julia#9975](https://github.com/JuliaLang/julia/issues/9975#issuecomment-72268963):
 > All numbers should only compare equal if they are actually numerically equal, so `pi != float(pi)`.
 > As `MathConst`s usually represent irrational numbers, they will never be equal to any floating point values.
