@@ -5,6 +5,8 @@ using Base.Test
     @test isa(tau, Irrational)
     @test τ == τ
     @test τ == tau
+    @test τ == big(tau)
+    @test τ !== big(tau)
 end
 
 @testset "tau vs. 2pi" begin
@@ -24,6 +26,7 @@ end
     end
 
     @testset "explicit type conversions" begin
+        @test tau == 2 * BigFloat(pi)
         @test Float32(tau) == 2 * Float32(pi)
         @test Float64(Float32(tau)) == Float64(2 * Float32(pi))
         @test BigFloat(tau) == 2 * BigFloat(pi)
