@@ -1,6 +1,7 @@
 When this package was first created, the equality `tau == 2pi` did hold true,
 in accordance to the mathematical definition of the constant.
-However, that is not valid anymore -- the two values are now only approximately equal, i.e. `tau ≈ 2*pi`.
+However, for a while that wasn't the case
+-- i.e. the two values were only approximately equal, i.e. `tau ≈ 2*pi`.
 This document explains in detail the reasons for the inequality.
 
 Both `pi` and `tau` are defined as instances of the type `Irrational`,
@@ -37,7 +38,12 @@ A prime example is the non-checking of integer overflow, which often surprised u
 (see the links in [JuliaLang/julia#2085][2085])
 so much so that it has led to [a dedicated FAQ entry][FAQ].
 
-So the reason for `tau != 2pi` is that, in the computing sense, they are represented by different structures in Julia.
+Although the general reasoning for `Irrational`s to be strictly unequal to any other number remains valid,
+this package provides a special case for the `tau == 2pi` equality, since that's true *by definition*.
+This is achieved by specifying additional function signatures for the `==` method.
+Doing `==(tau, 2pi) = true` rather than `*(2, pi) = tau` (dummy code, simplified for clarity)
+prevents breaking type stability, which would be an issue if the `*` function returned
+an Irrational when called with the parameters `2` and `pi`, and Float64 for all other cases.
 
 [3316]: https://github.com/JuliaLang/julia/pull/3316
 [9198]: https://github.com/JuliaLang/julia/pull/9198
