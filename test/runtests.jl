@@ -1,12 +1,32 @@
 using Tau
 using Base.Test
 
-@testset "basic tests" begin
-    @test tau ≠ 2 * pi # tau is Irrational, can't be equal to an AbstractFloat
-    @test Float32(tau) == 2*Float32(pi)
-    @test Float64(Float32(tau)) == Float64(2*Float32(pi))
-    @test big(tau) == 2(big(pi))
+@testset "self-identity" begin
     @test isa(tau, Irrational)
+    @test τ == τ
+    @test τ == tau
+end
+
+@testset "tau vs. 2pi" begin
+    @testset "symbols" begin
+        @test τ ≠ 2π # tau is Irrational, can't be equal to an AbstractFloat
+        @test 2π ≠ τ
+        @test π ≠ τ/2
+        @test τ/2 ≠ π
+    end
+
+    @testset "ascii" begin
+        @test tau ≠ 2*pi # tau is Irrational, can't be equal to an AbstractFloat
+        @test 2*pi ≠ tau
+        @test pi ≠ tau/2 # pi is Irrational, can't be equal to an AbstractFloat
+        @test tau/2 ≠ pi
+    end
+
+    @testset "explicit type conversions" begin
+        @test Float32(tau) == 2*Float32(pi)
+        @test Float64(Float32(tau)) == Float64(2*Float32(pi))
+        @test big(tau) == 2(big(pi))
+    end
 end
 
 @testset "sintau/costau" begin
