@@ -34,14 +34,14 @@ end
     @testset "approximate results for fractional inputs" begin
 
         @testset "real values" begin
-            for T = (Float32, Float64), x = -3:0.01:3.0
+            for T = (Float32, Float64), x = -3:0.1:3.0
                 @test @inferred(sintau(T(x))) ≈ T(sinpi(2 * parse(BigFloat, string(x))))
                 @test @inferred(costau(T(x))) ≈ T(cospi(2 * parse(BigFloat, string(x))))
             end
         end
 
         @testset "complex values" begin
-            for x in -3.0:0.1:3.0, y in -3.0:0.1:3.0
+            for x in -1.0:0.1:1.0, y in -1.0:0.1:1.0
                 z = complex(x, y)
                 @test @inferred(sintau(z)) ≈ sinpi(2 * z)
                 @test @inferred(costau(z)) ≈ cospi(2 * z)
