@@ -21,7 +21,9 @@ and related functions.
 tau ≈ 2*pi
 ```
 
-# Usage
+## Usage
+
+After installing this package with `Pkg.add("Tau")`, it can be used as follows:
 
 ```julia
 using Tau
@@ -38,3 +40,11 @@ The tau variants of `sinpi`, `cospi`, and `mod2pi` are also defined:
 sintau(1//4) # => 1.0
 costau(1//2) # => -1.0
 ```
+
+## The tau != 2pi inequality
+
+When this package was first created, the equality `tau == 2pi` did hold true,
+in accordance to the mathematical definition of the constant.
+However, that is not valid anymore -- the two values are only approximately equal: `tau ≈ 2*pi`.
+
+For a detailed explanation of the reasons for this, see [this document](tau-2pi-equality.md).
