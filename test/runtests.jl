@@ -2,11 +2,23 @@ using Tau
 using Base.Test
 
 @testset "self-identity" begin
-    @test isa(tau, Irrational)
-    @test τ == τ
-    @test τ == tau
-    @test τ == big(tau)
-    @test τ !== big(tau)
+
+    @testset "tau" begin
+        @test isa(tau, Irrational)
+        @test τ == τ
+        @test τ == tau
+        @test τ == big(tau)
+        @test τ !== big(tau)
+    end
+
+    # Also test pi self-identity, for 100% test coverage
+    @testset "pi" begin
+        @test π == π
+        @test π == pi
+        @test π == big(pi)
+        @test π !== big(pi)
+    end
+
 end
 
 @testset "tau vs. 2pi" begin
