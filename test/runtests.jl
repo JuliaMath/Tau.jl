@@ -10,17 +10,17 @@ end
 @testset "tau vs. 2pi" begin
 
     @testset "symbols" begin
-        @test τ ≠ 2π # tau is Irrational, can't be equal to an AbstractFloat
-        @test 2π ≠ τ
-        @test π ≠ τ/2
-        @test τ/2 ≠ π
+        @test τ == 2π
+        @test 2π == τ
+        @test π == τ/2
+        @test τ/2 == π
     end
 
     @testset "ascii" begin
-        @test tau ≠ 2*pi # tau is Irrational, can't be equal to an AbstractFloat
-        @test 2*pi ≠ tau
-        @test pi ≠ tau/2 # pi is Irrational, can't be equal to an AbstractFloat
-        @test tau/2 ≠ pi
+        @test tau == 2*pi
+        @test 2*pi == tau
+        @test pi == tau/2
+        @test tau/2 == pi
     end
 
     @testset "explicit type conversions" begin
