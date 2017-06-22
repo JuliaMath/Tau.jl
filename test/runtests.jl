@@ -25,6 +25,13 @@ end
         @test tau/2 == pi
     end
 
+    @testset "arithmetic operations" begin
+        @test pi == 0.5 * tau
+        @test tau == pi + pi
+        @test pi == tau - pi
+        @test 4pi == 2tau
+    end
+
     @testset "explicit type conversions" begin
         @test tau == 2 * BigFloat(pi)
         @test Float32(tau) == 2 * Float32(pi)
