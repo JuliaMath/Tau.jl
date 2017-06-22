@@ -8,6 +8,7 @@ using Base.Test
 end
 
 @testset "tau vs. 2pi" begin
+
     @testset "symbols" begin
         @test τ ≠ 2π # tau is Irrational, can't be equal to an AbstractFloat
         @test 2π ≠ τ
@@ -27,6 +28,7 @@ end
         @test Float64(Float32(tau)) == Float64(2*Float32(pi))
         @test big(tau) == 2(big(pi))
     end
+
 end
 
 @testset "sintau/costau" begin
