@@ -8,7 +8,7 @@ export tau, τ,
        sinτ, cosτ, modτ
 
 # Use overridden macro definition to define conversion methods for tau
-Base.@irrational τ 6.28318530717958647692 (2*big(pi))
+Base.@irrational τ 6.28318530717958647692 (2 * big(pi))
 const tau = τ
 
 include("trig.jl")

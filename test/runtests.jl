@@ -24,9 +24,9 @@ end
     end
 
     @testset "explicit type conversions" begin
-        @test Float32(tau) == 2*Float32(pi)
-        @test Float64(Float32(tau)) == Float64(2*Float32(pi))
-        @test big(tau) == 2(big(pi))
+        @test Float32(tau) == 2 * Float32(pi)
+        @test Float64(Float32(tau)) == Float64(2 * Float32(pi))
+        @test BigFloat(tau) == 2 * BigFloat(pi)
     end
 
 end
@@ -63,7 +63,7 @@ end
 
         @testset "real and complex values passed as floating point types" begin
             for T = (Float32, Float64, BigFloat, Complex), x = -3.0:3.0
-                @test @inferred(sintau(T(x))) == sign(x)*zero(T)
+                @test @inferred(sintau(T(x))) == sign(x) * zero(T)
                 @test @inferred(costau(T(x))) == one(T)
             end
         end
@@ -93,16 +93,16 @@ end
 
     # Adapted from julia/test/math.jl
     @testset "type stability" begin
-        for T = (Int,Float32,Float64,BigFloat), f = (sintau,costau)
-            @test Base.return_types(f,Tuple{T}) == [T]
-            @test Base.return_types(f,Tuple{Complex{T}}) == [Complex{float(T)}]
+        for T = (Int, Float32, Float64, BigFloat), f = (sintau, costau)
+            @test Base.return_types(f, Tuple{T}) == [T]
+            @test Base.return_types(f, Tuple{Complex{T}}) == [Complex{float(T)}]
         end
     end
 end
 
 # Adapted from julia/test/mod2pi.jl
 @testset "modtau" begin
-    @test_throws ArgumentError modtau(Int64(2)^60-1)
+    @test_throws ArgumentError modtau(Int64(2)^60 - 1)
     @test modtau(10) ≈ mod(10, tau)
     @test modtau(-10) ≈ mod(-10, tau)
     @test modtau(355) ≈ 3.1416227979431572

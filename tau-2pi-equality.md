@@ -5,7 +5,7 @@ This document explains in detail the reasons for the inequality.
 
 Both `pi` and `tau` are defined as instances of the type `Irrational`,
 which from its very introduction
-(under the name `MathConst`, in [JuliaLang/julia#3316](https://github.com/JuliaLang/julia/pull/3316)),
+(under the name `MathConst`, in [JuliaLang/julia#3316][3316]),
 had promotion rules that converted them into a floating point representation
 when involved in operations with other numbers.
 This means, in particular, that the `*` operator implicit in `2pi`
@@ -15,15 +15,15 @@ The fact that one side of the `tau==2pi` equation was a `MathConst` and the othe
 did not make the equality fail, since the same promotion rules
 meant that the `==` operator in `tau == 2pi` *also* converted both its operands to floating point.
 
-However, this behavior changed in [JuliaLang/julia#9198](https://github.com/JuliaLang/julia/pull/9198),
+However, this behavior changed in [JuliaLang/julia#9198][9198],
 which defined an explicit override for the `==` operator when involving `MathConst`s,
 with the following reasoning:
 > MathConsts are irrational, so unequal to everything else
 
-Later changed, in [JuliaLang/julia#11929](https://github.com/JuliaLang/julia/pull/11929), to:
+Later changed, in [JuliaLang/julia#11929][11929], to:
 > Irrationals, by definition, can't have a finite representation equal them exactly
 
-This was further explained in [a comment in JuliaLang/julia#9975](https://github.com/JuliaLang/julia/issues/9975#issuecomment-72268963):
+This was further explained in [a comment in JuliaLang/julia#9975][9975]:
 > All numbers should only compare equal if they are actually numerically equal, so `pi != float(pi)`.
 > As `MathConst`s usually represent irrational numbers, they will never be equal to any floating point values.
 
@@ -34,8 +34,14 @@ This may initially seem strange for end users, but is certainly nothing new to J
 which has in other occasions had to choose between moving closer to abstract mathematical correctness
 or to the internal mechanics underlying its concrete implementation.
 A prime example is the non-checking of integer overflow, which often surprised users
-(see the links in [JuliaLang/julia#2085](https://github.com/JuliaLang/julia/issues/2085))
-so much so that it has led to [a dedicated FAQ entry]
-(https://docs.julialang.org/en/latest/manual/faq/#Why-does-Julia-use-native-machine-integer-arithmetic?-1).
+(see the links in [JuliaLang/julia#2085][2085])
+so much so that it has led to [a dedicated FAQ entry][FAQ].
 
 So the reason for `tau != 2pi` is that, in the computing sense, they are represented by different structures in Julia.
+
+[3316]: https://github.com/JuliaLang/julia/pull/3316
+[9198]: https://github.com/JuliaLang/julia/pull/9198
+[11929]: https://github.com/JuliaLang/julia/pull/11929
+[9975]: https://github.com/JuliaLang/julia/issues/9975#issuecomment-72268963
+[2085]: https://github.com/JuliaLang/julia/issues/2085
+[FAQ]: https://docs.julialang.org/en/latest/manual/faq/#Why-does-Julia-use-native-machine-integer-arithmetic?-1
