@@ -6,7 +6,9 @@ using Base.Test
     @testset "tau" begin
         @test isa(tau, Irrational)
         @test τ == τ
+        @test τ === τ
         @test τ == tau
+        @test τ === tau
         @test τ == big(tau)
         @test τ !== big(tau)
     end
@@ -14,7 +16,9 @@ using Base.Test
     # Also test pi self-identity, for 100% test coverage
     @testset "pi" begin
         @test π == π
+        @test π === π
         @test π == pi
+        @test π === pi
         @test π == big(pi)
         @test π !== big(pi)
     end
