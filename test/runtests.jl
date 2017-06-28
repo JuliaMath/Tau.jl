@@ -9,6 +9,8 @@ using Base.Test
         @test τ === τ
         @test τ == tau
         @test τ === tau
+        @test τ == 1τ
+        @test τ !== 1τ
         @test τ == big(tau)
         @test τ !== big(tau)
     end
@@ -19,6 +21,8 @@ using Base.Test
         @test π === π
         @test π == pi
         @test π === pi
+        @test π == 1π
+        @test π !== 1π
         @test π == big(pi)
         @test π !== big(pi)
     end
