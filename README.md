@@ -1,5 +1,7 @@
 # Tau
 
+<div align="center"><img src="https://rawgit.com/JuliaMath/Tau.jl/master/tau-2pi.svg" width="300"/></div>
+
 [![tests-0.5][tests-0.5-img]](http://pkg.julialang.org/detail/Tau)
 [![tests-0.6][tests-0.6-img]](http://pkg.julialang.org/detail/Tau)  
 [![travis][travis-img]](https://travis-ci.org/JuliaMath/Tau.jl)
@@ -11,8 +13,6 @@
 [travis-img]: https://img.shields.io/travis/JuliaMath/Tau.jl/master.svg?label=Linux,%20macOS
 [appveyor-img]: https://img.shields.io/appveyor/ci/waldyrious/tau-jl/master.svg?label=Windows
 [codecov-img]: https://img.shields.io/codecov/c/github/JuliaMath/Tau.jl/master.svg?label=coverage
-
-<div align="center"><img src="https://rawgit.com/JuliaMath/Tau.jl/master/tau-2pi.svg" width="300"/></div>
 
 This [Julia](https://github.com/JuliaLang/julia) [package](http://pkg.julialang.org/)
 defines the [Tau](http://www.tauday.com/tau-manifesto) constant
