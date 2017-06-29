@@ -1,8 +1,6 @@
 # Tau.jl
 
-<div align="center"><img src="https://rawgit.com/JuliaMath/Tau.jl/master/tau-2pi.svg" width="300"/></div>
-
-----
+<div align="center"><img src="https://rawgit.com/JuliaMath/Tau.jl/master/tau-2pi.svg" width="300"/></div><br/><br/>
 
 [![tests-0.5][tests-0.5-img]](http://pkg.julialang.org/detail/Tau)
 [![tests-0.6][tests-0.6-img]](http://pkg.julialang.org/detail/Tau)  
