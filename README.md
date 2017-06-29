@@ -12,6 +12,7 @@
 [appveyor-img]: https://img.shields.io/appveyor/ci/waldyrious/tau-jl/master.svg?label=Windows
 [codecov-img]: https://img.shields.io/codecov/c/github/JuliaMath/Tau.jl/master.svg?label=coverage
 
+<div align="center"><img src="https://rawgit.com/JuliaMath/Tau.jl/master/tau-2pi.svg" width="300"/></div>
 
 This [Julia](https://github.com/JuliaLang/julia) [package](http://pkg.julialang.org/)
 defines the [Tau](http://www.tauday.com/tau-manifesto) constant
