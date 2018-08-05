@@ -1,6 +1,4 @@
-# Precompile the module:
-# https://docs.julialang.org/en/latest/manual/modules.html#Module-initialization-and-precompilation-1
-__precompile__()
+VERSION < v"0.7.0-beta2.199" && __precompile__()
 
 module Tau
 export tau, τ,
