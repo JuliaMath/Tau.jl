@@ -1,5 +1,6 @@
-using Tau
-using Base.Test
+include("../src/Tau.jl")
+using Main.Tau
+VERSION < v"0.7.0-beta2.199" ? using Base.Test : using Test
 
 @testset "self-identity" begin
     @test isa(tau, Irrational)

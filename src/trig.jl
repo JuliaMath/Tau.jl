@@ -1,9 +1,15 @@
 # Adapted from julia/special/trig.jl
 
+if VERSION < v"0.7.0-beta2.199"
+    function Base.DomainError(x)
+        throw(DomainError())
+    end
+end
+
 function sintau(x::Real)
     if !isfinite(x)
         isnan(x) && return x
-        throw(DomainError())
+        throw(DomainError(x))
     end
 
     rx = copysign(float(rem(x,1)),x)
@@ -29,7 +35,7 @@ end
 function costau(x::Real)
     if !isfinite(x)
         isnan(x) && return x
-        throw(DomainError())
+        throw(DomainError(x))
     end
 
     rx = abs(float(rem(x,1)))
@@ -55,7 +61,7 @@ sintau(x::Integer) = zero(x)
 costau(x::Integer) = one(x)
 
 # Implementations of complex sintau/costau are adapted from julia/base/special/trig.jl.
-function sintau{T}(z::Complex{T})
+function sintau(z::Complex{T}) where T
     F = float(T)
     zr, zi = reim(z)
     if isinteger(zr)
@@ -72,7 +78,7 @@ function sintau{T}(z::Complex{T})
     end
 end
 
-function costau{T}(z::Complex{T})
+function costau(z::Complex{T}) where T
     F = float(T)
     zr, zi = reim(z)
     if isinteger(zr)
