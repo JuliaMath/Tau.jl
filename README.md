@@ -2,14 +2,16 @@
 
 <div align="center"><img src="https://rawgit.com/JuliaMath/Tau.jl/master/tau-2pi.svg" width="300"/></div><br/><br/>
 
-[![tests-0.5][tests-0.5-img]](http://pkg.julialang.org/detail/Tau)
 [![tests-0.6][tests-0.6-img]](http://pkg.julialang.org/detail/Tau)  
+[![tests-0.7][tests-0.7-img]](http://pkg.julialang.org/detail/Tau)
+[![tests-1.0][tests-1.0-img]](http://pkg.julialang.org/detail/Tau)
 [![travis][travis-img]](https://travis-ci.org/JuliaMath/Tau.jl)
 [![appveyor][appveyor-img]](https://ci.appveyor.com/project/waldyrious/tau-jl)
 [![codecov][codecov-img]](http://codecov.io/github/JuliaMath/Tau.jl)
 
-[tests-0.5-img]: http://pkg.julialang.org/badges/Tau_0.5.svg
 [tests-0.6-img]: http://pkg.julialang.org/badges/Tau_0.6.svg
+[tests-0.7-img]: http://pkg.julialang.org/badges/Tau_0.7.svg
+[tests-1.0-img]: http://pkg.julialang.org/badges/Tau_1.0.svg
 [travis-img]: https://img.shields.io/travis/JuliaMath/Tau.jl/master.svg?label=Linux,%20macOS
 [appveyor-img]: https://img.shields.io/appveyor/ci/waldyrious/tau-jl/master.svg?label=Windows
 [codecov-img]: https://img.shields.io/codecov/c/github/JuliaMath/Tau.jl/master.svg?label=coverage
