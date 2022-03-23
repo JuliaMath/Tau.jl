@@ -1,17 +1,27 @@
-VERSION < v"0.7.0-beta2.199" && __precompile__()
-
 module Tau
+
+import IrrationalConstants
+
 export tau, τ,
        sintau, costau, modtau,
        sinτ, cosτ, modτ
 
-# Use overridden macro definition to define conversion methods for tau
-Base.@irrational τ 6.28318530717958647692 (2 * big(pi))
+# Definition of τ as irrational constant
+const τ = IrrationalConstants.twoπ
 const tau = τ
 
-include("trig.jl")
+const modτ = mod2pi
+const modtau = modτ
 
-modtau(x) = Base.mod2pi(x)
-const modτ = modtau
+# Trigonometric functions
+sinτ(x) = sinpi(2 * x)
+cosτ(x) = cospi(2 * x)
+
+# Optimization for integers
+sinτ(x::Integer) = zero(float(x))
+cosτ(x::Integer) = one(float(x))
+
+const sintau = sinτ
+const costau = cosτ
 
 end
