@@ -1,15 +1,13 @@
-include("../src/Tau.jl")
-using Main.Tau
-VERSION < v"0.7.0-beta2.199" ? using Base.Test : using Test
+using Tau
+using Test
 
 @testset "self-identity" begin
-    @test isa(tau, Irrational)
-    @test τ == τ
-    @test τ == tau
+    @test tau isa Irrational{:twoπ}
+    @test τ === τ
+    @test τ === tau
 end
 
 @testset "tau vs. 2pi" begin
-
     @testset "symbols" begin
         @test τ ≠ 2π # tau is Irrational, can't be equal to an AbstractFloat
         @test 2π ≠ τ
@@ -29,13 +27,10 @@ end
         @test Float64(Float32(tau)) == Float64(2 * Float32(pi))
         @test BigFloat(tau) == 2 * BigFloat(pi)
     end
-
 end
 
 @testset "sintau/costau" begin
-
     @testset "approximate results for fractional inputs" begin
-
         @testset "real values" begin
             for T = (Float32, Float64), x = -3:0.1:3.0
                 @test @inferred(sintau(T(x))) ≈ T(sinpi(2 * parse(BigFloat, string(x))))
@@ -50,11 +45,9 @@ end
                 @test @inferred(costau(z)) ≈ cospi(2 * z)
             end
         end
-
     end
 
     @testset "exact results for integer inputs" begin
-
         @testset "real and complex values passed as integer types" begin
             for T = (Int, Complex), x = -3:3
                 @test @inferred(sintau(T(x))) == zero(T)
@@ -68,11 +61,9 @@ end
                 @test @inferred(costau(T(x))) == one(T)
             end
         end
-
     end
 
     @testset "corner cases for abnormal inputs" begin
-
         @testset "real values" begin
             for x in (Inf, -Inf)
                 @test_throws DomainError sintau(x)
@@ -89,13 +80,12 @@ end
                 @test isequal(@inferred(costau(z)), cospi(2 * z))
             end
         end
-
     end
 
     # Adapted from julia/test/math.jl
     @testset "type stability" begin
         for T = (Int, Float32, Float64, BigFloat), f = (sintau, costau)
-            @test Base.return_types(f, Tuple{T}) == [T]
+            @test Base.return_types(f, Tuple{T}) == [float(T)]
             @test Base.return_types(f, Tuple{Complex{T}}) == [Complex{float(T)}]
         end
     end
