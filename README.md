@@ -24,7 +24,7 @@ julia> tau === τ ≈ 2*pi
 true
 
 julia> typeof(tau)
-Irrational{:twoπ}
+IrrationalConstants.Twoπ
 ```
 
 Note: to input the τ character, type `\tau` then press <kbd>Tab</kbd>.
