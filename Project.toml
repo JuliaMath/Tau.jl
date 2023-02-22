@@ -1,12 +1,12 @@
 name = "Tau"
 uuid = "c544e3c2-d3e5-5802-ac44-44683f340e4a"
-version = "1.0.0"
+version = "1.1.0"
 
 [deps]
 IrrationalConstants = "92d709cd-6900-40b7-9082-c6be49f344b6"
 
 [compat]
-IrrationalConstants = "0.1"
+IrrationalConstants = "0.1, 0.2"
 julia = "1"
 
 [extras]
