@@ -29,13 +29,14 @@ end
     end
 end
 
-@testset "sintau/costau/sincostau" begin
+@testset "sintau/costau/sincostau/cistau" begin
     @testset "approximate results for fractional inputs" begin
         @testset "real values" begin
             for T = (Float32, Float64), x = -3:0.1:3.0
                 @test @inferred(sintau(T(x))) ≈ T(sinpi(2 * parse(BigFloat, string(x))))
                 @test @inferred(costau(T(x))) ≈ T(cospi(2 * parse(BigFloat, string(x))))
                 @test @inferred(sincostau(T(x))) == (sintau(T(x)), costau(T(x)))
+                @test @inferred(cistau(T(x))) == costau(T(x)) + im sintau(T(x))
             end
         end
 
@@ -45,6 +46,7 @@ end
                 @test @inferred(sintau(z)) ≈ sinpi(2 * z)
                 @test @inferred(costau(z)) ≈ cospi(2 * z)
                 @test @inferred(sincostau(z)) == (sintau(z), costau(z))
+                @test @inferred(cistau(T(x))) == costau(T(x)) + im sintau(T(x))
             end
         end
     end
@@ -55,6 +57,7 @@ end
                 @test @inferred(sintau(T(x))) == zero(T)
                 @test @inferred(costau(T(x))) == one(T)
                 @test @inferred(sincostau(T(x))) == (sintau(T(x)), costau(T(x)))
+                @test @inferred(cistau(T(x))) == costau(T(x)) + im sintau(T(x))
             end
         end
 
@@ -63,6 +66,7 @@ end
                 @test @inferred(sintau(T(x))) == sign(x) * zero(T)
                 @test @inferred(costau(T(x))) == one(T)
                 @test @inferred(sincostau(T(x))) == (sintau(T(x)), costau(T(x)))
+                @test @inferred(cistau(T(x))) == costau(T(x)) + im sintau(T(x))
             end
         end
     end
@@ -77,6 +81,7 @@ end
             @test isequal(@inferred(sintau(NaN)), sinpi(NaN))
             @test isequal(@inferred(costau(NaN)), cospi(NaN))
             @test isequal(@inferred(sincostau(NaN)), (sintau(NaN), costau(NaN)))
+            @test isequal(@inferred(cistau(NaN)), costau(NaN) + im sintau(NaN))
         end
 
         @testset "complex values" begin
@@ -85,6 +90,7 @@ end
                 @test isequal(@inferred(sintau(z)), sinpi(2 * z))
                 @test isequal(@inferred(costau(z)), cospi(2 * z))
                 @test isequal(@inferred(sincostau(z)), (sintau(z), costau(z)))
+                @test isequal(@inferred(cistau(NaN)), costau(z) + im sintau(z))
             end
         end
     end
@@ -98,6 +104,8 @@ end
             end
             @test Base.return_types(sincostau, Tuple{T}) == [Tuple{float(T), float(T)}]
             @test Base.return_types(sincostau, Tuple{Complex{T}}) == [Tuple{Complex{float(T)}, Complex{float(T)}}]
+            @test Base.return_types(cistau, Tuple{T}) == [Complex{float(T)}]
+            @test Base.return_types(cistau, Tuple{Complex{T}}) == [Complex{float(T)}]
         end
     end
 
@@ -105,6 +113,7 @@ end
         @test sinτ === sintau
         @test cosτ === costau
         @test sincosτ === sincostau
+        @test cisτ === cistau
     end
 end
 
