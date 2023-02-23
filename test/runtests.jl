@@ -46,7 +46,7 @@ end
                 @test @inferred(sintau(z)) ≈ sinpi(2 * z)
                 @test @inferred(costau(z)) ≈ cospi(2 * z)
                 @test @inferred(sincostau(z)) == (sintau(z), costau(z))
-                @test @inferred(cistau(T(x))) == costau(T(x)) + im * sintau(T(x))
+                @test @inferred(cistau(z)) == costau(z) + im * sintau(z)
             end
         end
     end
@@ -77,6 +77,7 @@ end
                 @test_throws DomainError sintau(x)
                 @test_throws DomainError costau(x)
                 @test_throws DomainError sincostau(x)
+                @test_throws DomainError cistau(x)
             end
             @test isequal(@inferred(sintau(NaN)), sinpi(NaN))
             @test isequal(@inferred(costau(NaN)), cospi(NaN))
