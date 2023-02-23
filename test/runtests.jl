@@ -29,12 +29,13 @@ end
     end
 end
 
-@testset "sintau/costau" begin
+@testset "sintau/costau/sincostau" begin
     @testset "approximate results for fractional inputs" begin
         @testset "real values" begin
             for T = (Float32, Float64), x = -3:0.1:3.0
                 @test @inferred(sintau(T(x))) ≈ T(sinpi(2 * parse(BigFloat, string(x))))
                 @test @inferred(costau(T(x))) ≈ T(cospi(2 * parse(BigFloat, string(x))))
+                @test @inferred(sincostau(T(x))) == (sintau(T(x)), costau(T(x)))
             end
         end
 
@@ -43,6 +44,7 @@ end
                 z = complex(x, y)
                 @test @inferred(sintau(z)) ≈ sinpi(2 * z)
                 @test @inferred(costau(z)) ≈ cospi(2 * z)
+                @test @inferred(sincostau(z)) == (sintau(z), costau(z))
             end
         end
     end
@@ -52,6 +54,7 @@ end
             for T = (Int, Complex), x = -3:3
                 @test @inferred(sintau(T(x))) == zero(T)
                 @test @inferred(costau(T(x))) == one(T)
+                @test @inferred(sincostau(T(x))) == (sintau(T(x)), costau(T(x)))
             end
         end
 
@@ -59,6 +62,7 @@ end
             for T = (Float32, Float64, BigFloat, Complex), x = -3.0:3.0
                 @test @inferred(sintau(T(x))) == sign(x) * zero(T)
                 @test @inferred(costau(T(x))) == one(T)
+                @test @inferred(sincostau(T(x))) == (sintau(T(x)), costau(T(x)))
             end
         end
     end
@@ -68,9 +72,11 @@ end
             for x in (Inf, -Inf)
                 @test_throws DomainError sintau(x)
                 @test_throws DomainError costau(x)
+                @test_throws DomainError sincostau(x)
             end
             @test isequal(@inferred(sintau(NaN)), sinpi(NaN))
             @test isequal(@inferred(costau(NaN)), cospi(NaN))
+            @test isequal(@inferred(sincostau(NaN)), (sintau(NaN), costau(NaN)))
         end
 
         @testset "complex values" begin
@@ -78,16 +84,27 @@ end
                 z = complex(x, y)
                 @test isequal(@inferred(sintau(z)), sinpi(2 * z))
                 @test isequal(@inferred(costau(z)), cospi(2 * z))
+                @test isequal(@inferred(sincostau(z)), (sintau(z), costau(z)))
             end
         end
     end
 
     # Adapted from julia/test/math.jl
     @testset "type stability" begin
-        for T = (Int, Float32, Float64, BigFloat), f = (sintau, costau)
-            @test Base.return_types(f, Tuple{T}) == [float(T)]
-            @test Base.return_types(f, Tuple{Complex{T}}) == [Complex{float(T)}]
+        for T = (Int, Float32, Float64, BigFloat)
+            for f = (sintau, costau)
+                @test Base.return_types(f, Tuple{T}) == [float(T)]
+                @test Base.return_types(f, Tuple{Complex{T}}) == [Complex{float(T)}]
+            end
+            @test Base.return_types(sincostau, Tuple{T}) == [Tuple{float(T), float(T)}]
+            @test Base.return_types(sincostau, Tuple{Complex{T}}) == [Tuple{Complex{float(T)}, Complex{float(T)}}]
         end
+    end
+
+    @testset "aliases" begin
+        @test sinτ === sintau
+        @test cosτ === costau
+        @test sincosτ === sincostau
     end
 end
 
@@ -101,4 +118,8 @@ end
     @test modtau(355.0) ≈ 3.1416227979431572
     @test modtau(355.0f0) ≈ 3.1416228f0
     @test modtau(Int64(2)^60) == modtau(2.0^60)
+
+    # aliases
+    @test modtau === mod2pi
+    @test modτ === modtau
 end
