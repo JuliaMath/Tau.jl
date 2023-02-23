@@ -36,7 +36,7 @@ end
                 @test @inferred(sintau(T(x))) ≈ T(sinpi(2 * parse(BigFloat, string(x))))
                 @test @inferred(costau(T(x))) ≈ T(cospi(2 * parse(BigFloat, string(x))))
                 @test @inferred(sincostau(T(x))) == (sintau(T(x)), costau(T(x)))
-                @test @inferred(cistau(T(x))) == costau(T(x)) + im sintau(T(x))
+                @test @inferred(cistau(T(x))) == costau(T(x)) + im * sintau(T(x))
             end
         end
 
@@ -46,7 +46,7 @@ end
                 @test @inferred(sintau(z)) ≈ sinpi(2 * z)
                 @test @inferred(costau(z)) ≈ cospi(2 * z)
                 @test @inferred(sincostau(z)) == (sintau(z), costau(z))
-                @test @inferred(cistau(T(x))) == costau(T(x)) + im sintau(T(x))
+                @test @inferred(cistau(T(x))) == costau(T(x)) + im * sintau(T(x))
             end
         end
     end
@@ -57,7 +57,7 @@ end
                 @test @inferred(sintau(T(x))) == zero(T)
                 @test @inferred(costau(T(x))) == one(T)
                 @test @inferred(sincostau(T(x))) == (sintau(T(x)), costau(T(x)))
-                @test @inferred(cistau(T(x))) == costau(T(x)) + im sintau(T(x))
+                @test @inferred(cistau(T(x))) == costau(T(x)) + im * sintau(T(x))
             end
         end
 
@@ -66,7 +66,7 @@ end
                 @test @inferred(sintau(T(x))) == sign(x) * zero(T)
                 @test @inferred(costau(T(x))) == one(T)
                 @test @inferred(sincostau(T(x))) == (sintau(T(x)), costau(T(x)))
-                @test @inferred(cistau(T(x))) == costau(T(x)) + im sintau(T(x))
+                @test @inferred(cistau(T(x))) == costau(T(x)) + im * sintau(T(x))
             end
         end
     end
@@ -81,7 +81,7 @@ end
             @test isequal(@inferred(sintau(NaN)), sinpi(NaN))
             @test isequal(@inferred(costau(NaN)), cospi(NaN))
             @test isequal(@inferred(sincostau(NaN)), (sintau(NaN), costau(NaN)))
-            @test isequal(@inferred(cistau(NaN)), costau(NaN) + im sintau(NaN))
+            @test isequal(@inferred(cistau(NaN)), costau(NaN) + im * sintau(NaN))
         end
 
         @testset "complex values" begin
@@ -90,7 +90,7 @@ end
                 @test isequal(@inferred(sintau(z)), sinpi(2 * z))
                 @test isequal(@inferred(costau(z)), cospi(2 * z))
                 @test isequal(@inferred(sincostau(z)), (sintau(z), costau(z)))
-                @test isequal(@inferred(cistau(NaN)), costau(z) + im sintau(z))
+                @test isequal(@inferred(cistau(z)), costau(z) + im * sintau(z))
             end
         end
     end
