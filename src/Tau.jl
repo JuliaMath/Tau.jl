@@ -61,7 +61,7 @@ Compute ``\\sin(\\tau x)`` more accurately than `sin(tau*x)`, especially for lar
 
 See also: `costau`, `sincostau`.
 """
-function sintau end
+function sinτ end
 
 """
     cosτ(x)
@@ -71,7 +71,7 @@ Compute ``\\cos(\\tau x)`` more accurately than `cos(tau*x)`, especially for lar
 
 See also: `sintau`, `sincostau`.
 """
-function costau end
+function cosτ end
 
 """
     sincosτ(x)
@@ -82,7 +82,7 @@ where `x` is in radians), returning a tuple `(sine, cosine)`.
 
 See also: `sintau`, `costau`.
 """
-function sincostau end
+function sincosτ end
 
 
 """
@@ -93,6 +93,6 @@ Compute ``\\exp(\\tau i x)`` more accurately than `cis(tau*x)`, especially for l
 
 See also: `cis`, `sincostau`.
 """
-function cistau end
+function cisτ end
 
 end
