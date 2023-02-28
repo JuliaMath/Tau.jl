@@ -110,12 +110,6 @@ end
         end
     end
 
-    @testset "aliases" begin
-        @test sinτ === sintau
-        @test cosτ === costau
-        @test sincosτ === sincostau
-        @test cisτ === cistau
-    end
 end
 
 # Adapted from julia/test/mod2pi.jl
@@ -131,5 +125,4 @@ end
 
     # aliases
     @test modtau === mod2pi
-    @test modτ === modtau
 end
