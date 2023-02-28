@@ -45,9 +45,54 @@ function cisτ(x::Integer)
     return complex(one(y), zero(y))
 end
 
+# Aliases
 const sintau = sinτ
 const costau = cosτ
 const sincostau = sincosτ
 const cistau = cisτ
+
+# Documentation
+
+"""
+    sinτ(x)
+    sintau(x)
+
+Compute ``\\sin(\\tau x)`` more accurately than `sin(tau*x)`, especially for large `x`.
+
+See also: `costau`, `sincostau`.
+"""
+function sinτ end
+
+"""
+    cosτ(x)
+    costau(x)
+
+Compute ``\\cos(\\tau x)`` more accurately than `cos(tau*x)`, especially for large `x`.
+
+See also: `sintau`, `sincostau`.
+"""
+function cosτ end
+
+"""
+    sincosτ(x)
+    costau(x)
+
+Simultaneously compute `sintau(x)` and `costau(x)` (the sine and cosine of `tau*x`,
+where `x` is in radians), returning a tuple `(sine, cosine)`.
+
+See also: `sintau`, `costau`.
+"""
+function sincosτ end
+
+
+"""
+    cisτ(x)
+    cistau(x)
+
+Compute ``\\exp(\\tau i x)`` more accurately than `cis(tau*x)`, especially for large `x`.
+
+See also: `cis`, `sincostau`.
+"""
+function cisτ end
 
 end
