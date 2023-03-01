@@ -29,7 +29,7 @@ IrrationalConstants.Twoπ
 
 Note: to input the τ character, type `\tau` then press <kbd>Tab</kbd>.
 
-The tau variants of `sinpi`, `cospi`, and `mod2pi` are also defined:
+The tau variants of `sinpi`, `cospi`, `sincospi`, `cispi`, and `mod2pi` are also defined:
 
 ```julia
 julia> sintau(1//4)
@@ -38,11 +38,17 @@ julia> sintau(1//4)
 julia> costau(1//2)
 -1.0
 
+julia> sincostau(1//2)
+(0.0, -1.0)
+
+julia> cistau(1//2)
+-1.0 + 0.0im
+
 julia> modtau(9*pi/4)
 0.7853981633974481
 ```
 
-Alternatively, one can use the Unicode aliases `sinτ`, `cosτ`, and `modτ`.
+Alternatively, one can use the Unicode aliases `sinτ`, `cosτ`, `sincosτ`, `cisτ`, and `modτ`.
 
 ## The tau != 2pi inequality
 
