@@ -2,7 +2,7 @@ using Tau
 using Test
 
 @testset "self-identity" begin
-    @test tau isa Irrational{:twoπ}
+    @test tau === Tau.IrrationalConstants.twoπ
     @test τ === τ
     @test τ === tau
 end
