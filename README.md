@@ -1,6 +1,6 @@
 # Tau.jl
 
-<div align="center"><img src="https://rawgit.com/JuliaMath/Tau.jl/master/tau-2pi.svg" width="300"/></div><br/><br/>
+<div align="center"><img src="tau-2pi.svg" width="300"/></div><br/><br/>
 
 [![CI](https://github.com/JuliaMath/Tau.jl/actions/workflows/CI.yml/badge.svg?branch=master)](https://github.com/JuliaMath/Tau.jl/actions/workflows/CI.yml?query=branch%3Amaster)
 [![codecov](https://img.shields.io/codecov/c/github/JuliaMath/Tau.jl/master.svg?label=coverage)](http://codecov.io/github/JuliaMath/Tau.jl)
