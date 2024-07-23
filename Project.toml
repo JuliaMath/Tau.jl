@@ -1,6 +1,6 @@
 name = "Tau"
 uuid = "c544e3c2-d3e5-5802-ac44-44683f340e4a"
-version = "2.0.0"
+version = "2.0.1"
 
 [deps]
 IrrationalConstants = "92d709cd-6900-40b7-9082-c6be49f344b6"
