@@ -2,6 +2,7 @@
 
 <div align="center"><img src="tau-2pi.svg" width="300"/></div><br/><br/>
 
+[![version](https://juliahub.com/docs/General/Tau/stable/version.svg)](https://juliahub.com/ui/Packages/General/Tau)
 [![CI](https://github.com/JuliaMath/Tau.jl/actions/workflows/CI.yml/badge.svg?branch=master)](https://github.com/JuliaMath/Tau.jl/actions/workflows/CI.yml?query=branch%3Amaster)
 [![codecov](https://img.shields.io/codecov/c/github/JuliaMath/Tau.jl/master.svg?label=coverage)](http://codecov.io/github/JuliaMath/Tau.jl)
 
